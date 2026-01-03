@@ -430,6 +430,14 @@ function Header({ currentUser, setCurrentUser, setCurrentPage, cartItemCount, se
     }
   };
 
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) return 'Good Morning';
+    if (hour >= 12 && hour < 17) return 'Good Afternoon';
+    if (hour >= 17 && hour < 21) return 'Good Evening';
+    return 'Good Night';
+  };
+
   return (
     <header className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-4">
@@ -444,7 +452,7 @@ function Header({ currentUser, setCurrentUser, setCurrentPage, cartItemCount, se
           <div className="flex items-center gap-4">
             {currentUser ? (
               <div className="flex items-center gap-3">
-                <span className="text-sm text-gray-600">Hello, {currentUser.fullName}</span>
+                <span className="text-sm text-gray-600">{getGreeting()}, {currentUser.fullName}</span>
                 <button
                   onClick={() => {
                     setCurrentUser(null);
